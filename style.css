@@ -10,8 +10,48 @@ main {
 	display: grid;
 	grid-template-rows: 10% 85% 5%;
 	height: 100%;
+	padding: 15px;
 }
 .books {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+	gap: 15px;
+	align-items: center;
+	justify-content: center;
+	overflow-y: auto;
+}
+.book-card {
+	display: inline-grid;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid black;
+	max-height: 300px;
+	height: 100%;
+}
+p {
+	text-align: center;
+	color: gray;
+}
+a {
+	text-decoration: none;
+	color: gray;
+	text-align: center;
+}
+header {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	grid-template-rows: repeat(2, 1fr);
+	padding: auto 15px;
+}
+header > p {
+	font-size: 30px;
+}
+
+/* form */
+form {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	height: 300px;
 }
