@@ -23,7 +23,12 @@ const booksSection = document.querySelector(".books")
 
 // initialize book form
 const bookForm = document.getElementById("book-form")
-
+const toggleBtns = document.querySelectorAll(".toggle-form")
+toggleBtns.forEach(btn => btn.addEventListener("click", toggleForm))
+function toggleForm(e) {
+	e.preventDefault()
+	bookForm.classList.toggle("active-form")
+}
 // delete book func
 function deleteBook(e) {
 	const id = e.target.parentElement.dataset.id
@@ -76,7 +81,6 @@ function addBook(e) {
 	} else if (!bookRead.checked) {
 		readStatus = "Not read"
 	} 
-	console.log(bookRead.value)
 	// create an instance of book with input values
 	let newBook = new Book(
 		bookTitle.value,
