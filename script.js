@@ -1,12 +1,11 @@
 
 // book class
 class Book {
-	constructor(title, author, pages, read, id) {
+	constructor(title, author, pages, read) {
 		this.title = title
 		this.author = author
 		this.pages = pages
 		this.read = read
-		this.id = id
 	}
 }
 
@@ -28,19 +27,18 @@ const bookForm = document.getElementById("book-form")
 // delete book func
 function deleteBook(e) {
 	const id = e.target.parentElement.dataset.id
-	booksLibrary = booksLibrary.filter(book => parseInt(book.id) !== parseInt(id))
-	console.log("filtered array:", booksLibrary)
+	// looks at index of the book in the booklibrary array and filters out the corresponding id of the parentelement dataset.id
+	booksLibrary = booksLibrary.filter(book => booksLibrary.indexOf(book) !== parseInt(id))
 	renderBooks(booksLibrary)
 }
 function renderBooks(arr) {
-	console.log("renderbooks arr parameter",arr)
 	// clear the inner html of books section
 	booksSection.innerHTML = ""
 	// map over every book in books library and create corresponding elements
 	arr.map(book => {
 		let section = document.createElement("section")
 		section.classList.add("book-card")
-		section.dataset.id = book.id
+		section.dataset.id = arr.indexOf(book)
 		let elTitle = document.createElement("p")
 		elTitle.textContent = `Title: ${book.title}`
 
@@ -71,8 +69,7 @@ function addBook(e) {
 		bookTitle.value,
 		bookAuthor.value,
 		bookPages.value,
-		bookRead.value,
-		booksLibrary.length
+		bookRead.value
 	)
 	// push created book into books library array
 	booksLibrary.push(newBook)
