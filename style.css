@@ -18,7 +18,11 @@ main {
 	grid-template-rows: minmax(250px, 350px);
 	grid-auto-rows: minmax(250px, 350px);
 	gap: 15px;
+	max-width: 1200px;
+	width: 100%;
 	overflow-y: auto;
+	margin-inline: auto;
+	justify-content: center;
 }
 .book-card {
 	display: inline-grid;
@@ -34,7 +38,7 @@ p {
 }
 a {
 	text-decoration: none;
-	color: gray;
+	color: rgb(81, 79, 79);
 	text-align: center;
 }
 header {
