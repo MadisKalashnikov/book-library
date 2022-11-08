@@ -20,15 +20,20 @@ const bookRead = document.querySelector("#book-read")
 
 // initialize book section
 const booksSection = document.querySelector(".books")
-
 // initialize book form
 const bookForm = document.getElementById("book-form")
 const toggleBtns = document.querySelectorAll(".toggle-form")
 toggleBtns.forEach(btn => btn.addEventListener("click", toggleForm))
 function toggleForm(e) {
 	e.preventDefault()
+	e.stopPropagation()
 	bookForm.classList.toggle("active-form")
 }
+const main = document.querySelector("main")
+main.addEventListener("click", (e) => {
+	e.stopPropagation()
+	bookForm.classList.remove("active-form")
+})
 // delete book func
 function deleteBook(e) {
 	const id = e.target.parentElement.dataset.id
@@ -38,8 +43,11 @@ function deleteBook(e) {
 	renderBooks(booksLibrary)
 }
 function toggleRead(e) {
-	const bookId = e.target.parentElement.dataset.id
-	
+	const targetBook = e.target.parentElement.dataset.id
+	// change the object that corresponds with the index of array and change the value
+	booksLibrary[parseInt(targetBook)].read = !booksLibrary[parseInt(targetBook)].read
+	// render bookslibrary 
+	renderBooks(booksLibrary)
 }
 function renderBooks(arr) {
 	// clear the inner html of books section
@@ -59,7 +67,11 @@ function renderBooks(arr) {
 		elPages.textContent = `Pages: ${book.pages}`
 
 		let elRead = document.createElement("button")
-		elRead.textContent = `${book.read}`
+		if (book.read === true) {
+			elRead.textContent = "Read"
+		} else if (book.read === false) {
+			elRead.textContent = "Not read"
+		} 
 		elRead.addEventListener("click", toggleRead)
 
 		let closeBtn = document.createElement("button")
@@ -77,9 +89,9 @@ function addBook(e) {
 	e.preventDefault()
 	let readStatus = ""
 	if (bookRead.checked) {
-		readStatus = "Read"
+		readStatus = true
 	} else if (!bookRead.checked) {
-		readStatus = "Not read"
+		readStatus = false
 	} 
 	// create an instance of book with input values
 	let newBook = new Book(

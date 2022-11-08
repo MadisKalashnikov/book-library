@@ -56,12 +56,13 @@ form {
 	height: 300px;
 	width: 300px;
 	position: absolute;
-	top: 200px;
-	bottom: 200px;
+	top: 300px;
+	bottom: 0px;
 	left: 0;
 	right: 0;	
 	margin-inline: auto;
 	background-color: white;
+	z-index: 500;
 }
 
 form > button:first-of-type {
@@ -79,6 +80,5 @@ form > button:first-of-type:hover {
 }
 .active-form {
 	display: grid;
-	z-index: 2;
 	border: 2px solid black;
 }
